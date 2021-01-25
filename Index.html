@@ -1,0 +1,762 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/datepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+    </style>
+
+</head>
+<body>
+
+    <div class="hotels-page">
+        <section class="search-and-filter">
+            <div class="first-row">
+                <div class="first-col">
+                    <span class="fa fa-search"></span>
+                    <input id="searchField" type="text" placeholder="Champs Elysees, Paris" />
+                </div>
+                <div class="second-col">
+                    <input id="searchBtn" type="submit" value="Search" />
+                </div>
+            </div>
+            <div class="second-row">
+                <div class="col first-col">
+                    <i class="fa fa-calendar"></i>
+                    <input id="checkInDate" type="text" autocomplete="off" placeholder="Check-in" />
+                </div>
+                <div class="col second-col">
+                    <i class="fa fa-calendar"></i>
+                    <input id="checkOutDate" placeholder="Check-out" />
+                </div>
+                <div class="col">
+                    <i class="fa fa-users"></i>
+                    <select id="rooms">
+                        <option>Single</option>
+                        <option>Doube</option>
+                        <option>Familly Rooms</option>
+                    </select>
+                </div>
+            </div>
+            <div class="third-row">
+
+                <div class="col first-col">
+                    <div class="label">
+                        <span>Price</span>
+                        <span id="maxPrice">max. $6000</span>
+                    </div>
+                    <input id="priceRange" type="range" min="0" max="5000" />
+                </div>
+                <div class="col">
+                    <div class="label">
+                        Property Type
+                    </div>
+                    <select id="propertyType">
+                        <option>All</option>
+                        <option>⭐</option>
+                        <option>⭐⭐</option>
+                        <option>⭐⭐⭐</option>
+                        <option>⭐⭐⭐⭐</option>
+                        <option>⭐⭐⭐⭐⭐</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <div class="label">
+                        Guest Rating
+                    </div>
+                    <select id="guestRatings">
+                        <option>All</option>
+                        <option>0 - 2 Okay</option>
+                        <option>2 - 6 Fair</option>
+                        <option>6 - 7 Good</option>
+                        <option>7 - 8.5 Very Good</option>
+                        <option>8.5 - 10 Excellent</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <div class="label">
+                        Hotel Location
+                    </div>
+                    <select id="hotelLocations">
+                        <option>All</option>
+                        <option>Paris</option>
+                        <option>Marseille</option>
+                        <option>Toulouse</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <div class="label">
+                        More Filters
+                    </div>
+                    <select id="moreFilters">
+                        <option>Bathroom</option>
+                        <option>Bedroom</option>
+                        <option>Beds</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-and-sort">
+            <div class="map">
+                <iframe width="150" height="60" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d83998.94722687619!2d2.277019841665155!3d48.8588377391234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sgr!4v1554987763683!5m2!1sen!2sgr"></iframe>
+            </div>
+
+            <div class="sorting">
+                <strong>Sort By</strong>
+                <select id="sortBy">
+                    <option>Hotel name</option>
+                    <option>City</option>
+                    <option>Price</option>
+                </select>
+                <span class="info-icon">i</span>
+            </div>
+
+        </section>
+
+        <section id="soma" class="listing-hotels">
+
+            <!--<div class="hotel-card">
+                <div class="photo" style="background: url('http://comerciodearrecife.com/wp-content/uploads/hotel-prueba-1.jpg'); background-position: center">
+                    <i class="fa fa-heart"></i>
+                    <span>1/30</span>
+                </div>
+                <div class="details">
+                    <h3>Hotel Lancaster</h3>
+                    <div class="rating" style="display:inline;">
+                        <div>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <i>Hotel</i>
+                        </div>
+
+                    </div>
+                    <div class="location">
+                        Paris,0.2 Miles to Champs Elysees
+                    </div>
+
+                    <div class="reviews">
+                        <span class="total">8.8</span>
+                        <b>Excellent</b>
+                        <small>(1736)</small>
+                    </div>
+
+                    <div class="location-reviews">
+                        Excellent location <small>(9.2/10)</small>
+                    </div>
+                </div>
+
+                <div class="third-party-prices">
+                    <div class="sites-and-prices">
+                        <div class="highlited">
+                            Hotel website
+                            <strong>$706</strong>
+                        </div>
+                        <div>
+                            Agoda
+                            <strong>$575</strong>
+                        </div>
+                        <div>
+                            Travelocity
+                            <strong>$708</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="more-deals">
+                        <strong>More deals from</strong>
+                        <strong>$575</strong>
+                    </div>
+                </div>
+
+                <div class="call-to-action">
+                    <div class="price">
+
+                        <div class="before-discount">
+                            HotelPower.com
+                            <strong><s>$1,568</s></strong>
+                        </div>
+
+                        <div class="after-discount">
+                            Travelocity
+                            <strong>$1,213</strong>
+                            <div class="total">
+                                3 nights for <strong>$3,638</strong>
+                            </div>
+                            <div class="usp">
+                                <span>Free Breakfast</span>
+                            </div>
+                        </div>
+
+                        <div class="button">
+                            <a href="#">View Deal</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+            <div class="hotel-card">
+                <div class="photo" style="background: url('http://comerciodearrecife.com/wp-content/uploads/hotel-prueba-1.jpg'); background-position: center">
+                    <i class="fa fa-heart"></i>
+                    <span>1/30</span>
+                </div>
+                <div class="details">
+                    <h3>Hotel Lancaster</h3>
+                    <div class="rating" style="display:inline;">
+                        <div>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <i>Hotel</i>
+                        </div>
+
+                    </div>
+                    <div class="location">
+                        Paris,0.2 Miles to Champs Elysees
+                    </div>
+
+                    <div class="reviews">
+                        <span class="total">8.8</span>
+                        <b>Excellent</b>
+                        <small>(1736)</small>
+                    </div>
+
+                    <div class="location-reviews">
+                        Excellent location <small>(9.2/10)</small>
+                    </div>
+                </div>
+
+                <div class="third-party-prices">
+                    <div class="sites-and-prices">
+                        <div class="highlited">
+                            Hotel website
+                            <strong>$706</strong>
+                        </div>
+                        <div>
+                            Agoda
+                            <strong>$575</strong>
+                        </div>
+                        <div>
+                            Travelocity
+                            <strong>$708</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="more-deals">
+                        <strong>More deals from</strong>
+                        <strong>$575</strong>
+                    </div>
+                </div>
+
+                <div class="call-to-action">
+                    <div class="price">
+
+                        <div class="before-discount">
+                            HotelPower.com
+                            <strong><s>$1,568</s></strong>
+                        </div>
+
+                        <div class="after-discount">
+                            Travelocity
+                            <strong>$1,213</strong>
+                            <div class="total">
+                                3 nights for <strong>$3,638</strong>
+                            </div>
+                            <div class="usp">
+                                <span>Free Breakfast</span>
+                            </div>
+                        </div>
+
+                        <div class="button">
+                            <a href="#">View Deal</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+
+
+            <div class="hotel-card">
+                <div class="photo" style="background: url('http://comerciodearrecife.com/wp-content/uploads/hotel-prueba-1.jpg'); background-position: center">
+                    <i class="fa fa-heart"></i>
+                    <span>1/30</span>
+                </div>
+                <div class="details">
+                    <h3>Hotel Lancaster</h3>
+                    <div class="rating" style="display:inline;">
+                        <div>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <i>Hotel</i>
+                        </div>
+
+                    </div>
+                    <div class="location">
+                        Paris,0.2 Miles to Champs Elysees
+                    </div>
+
+                    <div class="reviews">
+                        <span class="total">8.8</span>
+                        <b>Excellent</b>
+                        <small>(1736)</small>
+                    </div>
+
+                    <div class="location-reviews">
+                        Excellent location <small>(9.2/10)</small>
+                    </div>
+                </div>
+
+                <div class="third-party-prices">
+                    <div class="sites-and-prices">
+                        <div class="highlited">
+                            Hotel website
+                            <strong>$706</strong>
+                        </div>
+                        <div>
+                            Agoda
+                            <strong>$575</strong>
+                        </div>
+                        <div>
+                            Travelocity
+                            <strong>$708</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="more-deals">
+                        <strong>More deals from</strong>
+                        <strong>$575</strong>
+                    </div>
+                </div>
+
+                <div class="call-to-action">
+                    <div class="price">
+
+                        <div class="before-discount">
+                            HotelPower.com
+                            <strong><s>$1,568</s></strong>
+                        </div>
+
+                        <div class="after-discount">
+                            Travelocity
+                            <strong>$1,213</strong>
+                            <div class="total">
+                                3 nights for <strong>$3,638</strong>
+                            </div>
+                            <div class="usp">
+                                <span>Free Breakfast</span>
+                            </div>
+                        </div>
+
+                        <div class="button">
+                            <a href="#">View Deal</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+            <div class="hotel-card">
+                <div class="photo" style="background: url('http://comerciodearrecife.com/wp-content/uploads/hotel-prueba-1.jpg'); background-position: center">
+                    <i class="fa fa-heart"></i>
+                    <span>1/30</span>
+                </div>
+                <div class="details">
+                    <h3>Hotel Lancaster</h3>
+                    <div class="rating" style="display:inline;">
+                        <div>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <i>Hotel</i>
+                        </div>
+
+                    </div>
+                    <div class="location">
+                        Paris,0.2 Miles to Champs Elysees
+                    </div>
+
+                    <div class="reviews">
+                        <span class="total">8.8</span>
+                        <b>Excellent</b>
+                        <small>(1736)</small>
+                    </div>
+
+                    <div class="location-reviews">
+                        Excellent location <small>(9.2/10)</small>
+                    </div>
+                </div>
+
+                <div class="third-party-prices">
+                    <div class="sites-and-prices">
+                        <div class="highlited">
+                            Hotel website
+                            <strong>$706</strong>
+                        </div>
+                        <div>
+                            Agoda
+                            <strong>$575</strong>
+                        </div>
+                        <div>
+                            Travelocity
+                            <strong>$708</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="more-deals">
+                        <strong>More deals from</strong>
+                        <strong>$575</strong>
+                    </div>
+                </div>
+
+                <div class="call-to-action">
+                    <div class="price">
+
+                        <div class="before-discount">
+                            HotelPower.com
+                            <strong><s>$1,568</s></strong>
+                        </div>
+
+                        <div class="after-discount">
+                            Travelocity
+                            <strong>$1,213</strong>
+                            <div class="total">
+                                3 nights for <strong>$3,638</strong>
+                            </div>
+                            <div class="usp">
+                                <span>Free Breakfast</span>
+                            </div>
+                        </div>
+
+                        <div class="button">
+                            <a href="#">View Deal</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>-->
+
+
+
+        </section>
+
+
+
+    </div>
+
+
+    <script src="Scripts/jquery-3.5.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+    <script src="Scripts/datepicker.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            let hotels;
+
+            GetDataAsync()
+                .done(
+                    AddAutoComplete,
+                    AddDatePickers,
+                    SetRoomTypes,
+                    SetPriceSlider,
+                    SetHotelLocations,
+                    SetSortByOptions,
+
+                ).then(SetSearchHandler);
+
+
+            function FilterMassacre() {
+
+
+                let filteredHotels = [...hotels]; //copy array
+
+
+                let city = $("#searchField").val();
+                let price = $("#priceRange").val();
+                let propertyType = $("#propertyType").val();
+                let guestRating = $("#guestRatings").val();
+                let hotelLocation = $("#hotelLocations").val();
+                let sortBy = $("#sortBy").val();
+                if (city != "") {
+                    const filtered = filteredHotels.filter((hotel) => hotel.city.includes(city));
+                    filteredHotels = filtered;
+                }
+                if (propertyType != "All") {
+                    const filtered = filteredHotels.filter((hotel) => hotel.rating == propertyType.length);
+                    filteredHotels = filtered;
+                }
+                if (guestRating != "All") {
+                    const filtered = filteredHotels.filter((hotel) => hotel.ratings.text == guestRating.split(" ")[3]);
+                    filteredHotels = filtered;
+                }
+                if (hotelLocation != "All") {
+                    const filtered = filteredHotels.filter((hotel) => hotel.city == hotelLocation);
+                    filteredHotels = filtered;
+                }
+
+
+                let filtered = filteredHotels.filter((hotel) => hotel.price <= price);
+                filteredHotels = filtered;
+
+                if (sortBy != "-") {
+                    let temp = filteredHotels.filter((hotel) => hotel.filters.some((filter) => filter.name == sortBy));
+                    filteredHotels = temp;
+                    filteredHotels = filteredHotels.sort((hotel1, hotel2) => hotel1.name > hotel2.name);
+                }
+
+                $("#soma").empty();
+                filteredHotels.forEach(PrintHotel);
+
+
+            }
+
+
+            function GetDataAsync() {
+                return $.ajax({
+                    type: "GET",
+                    url: "json/data.json",
+
+                    dataType: "json",
+                    success: function (response) {
+                        //console.log(response[0].roomtypes);// roomtypes... response[0].roomtypes  every room has a.. roomtype.name
+                        //console.log(response[1].entries[0].filters[4].name);
+
+                        hotels = response[1].entries;
+
+                        hotels.forEach(PrintHotel);
+
+                    }
+                });
+            }
+
+            function SetSearchHandler(data) {
+                $("#searchBtn").click((event) => {
+                    FilterMassacre()
+                });
+            }
+
+            function SetSortByOptions(data) {
+                let hotels = data[1].entries;
+                let sortFilters = new Set();
+                hotels.forEach((hotel) => hotel.filters.forEach((filter) => sortFilters.add(filter.name)));
+
+                let optionsTemplate = `<option> - </option>`;
+                sortFilters.forEach((filter) => optionsTemplate += `<option>${filter}</option>`);
+
+                $("#sortBy").empty().append(optionsTemplate);
+            }
+
+            function SetHotelLocations(data) {
+                let hotels = data[1].entries;
+                let cities = new Set();
+                hotels.forEach((hotel) => cities.add(hotel.city));
+                //let uniqueCities = new Set(cities);
+                let template = "<option>All</option>";
+                cities.forEach((city) => template += `<option>${city}</option>`)
+                $("#hotelLocations").empty().append(template);
+
+            }
+
+            function SetPriceSlider(data) {
+                //maxPrice priceRange
+                let hotels = data[1].entries;
+                let prices = [];
+                hotels.forEach((hotel) => prices.push(hotel.price));
+
+
+                let max = prices.reduce((accum, curr) => accum > curr ? accum : curr);
+                let min = prices.reduce((accum, curr) => accum < curr ? accum : curr)
+
+                $("#maxPrice").text("max. $" + max);
+                let inputRange = $("#priceRange");
+                inputRange.attr("min", min)
+                    .attr("max", max)
+                    .val(max);
+
+                inputRange.change(() => FilterMassacre());
+            }
+
+            function SetRoomTypes(data) {
+                let roomtypes = [];
+                data[0].roomtypes.forEach((room) => roomtypes.push(room.name));
+                let options;
+                roomtypes.forEach((room) => options += `<option>${room}</option>`);
+                $("#rooms").empty().append(options);
+
+            }
+
+            function AddDatePickers(data) {
+
+                checkInDate = new Datepicker($("#checkInDate")[0]);
+                checkOutDate = new Datepicker($("#checkOutDate")[0]);
+                checkInDate.config({
+                    first_date: new Date(2021, 0, 1), // 01/01/2019
+                    last_date: new Date(2021, 11, 31) // 12/31/2019
+                });
+
+                checkOutDate.config({
+                    first_date: new Date(2021, 0, 1), // 01/01/2019
+                    last_date: new Date(2021, 11, 31) // 12/31/2019
+                });
+
+            }
+
+            function AddAutoComplete(data) {
+                hotels = data[1].entries;
+                let cities = [];
+                for (const i in hotels) {
+                    cities.push(hotels[i].city);
+                }
+
+                $("#searchField").autocomplete({
+                    source: cities
+                });
+            }
+
+            function Rating(rating) {
+                let s="";
+                for (let x = 0; x < rating; x++)
+                    s += `<span class="fa fa-star"></span>`;
+                return s;
+            }
+
+
+            function PrintHotel(hotel) {
+                let template = `<div class="hotel-card">
+                                                    <div class="photo" style="background: url(${hotel.thumbnail}); background-position: center">
+                                                        <i class="fa fa-heart"></i>
+                                                        <span>1/30</span>
+                                                    </div>
+                                                    <div class="details">
+                                                        <h3>${hotel.hotelName}</h3>
+                                                        <div class="rating" style="display:inline;">
+                                                            <div>
+                                                                ${Rating(hotel.rating)}
+                                                                <i>Hotel</i>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="location">
+                                                            ${hotel.city},0.2 Miles to Champs Elysees
+                                                        </div>
+
+                                                        <div class="reviews">
+                                                            <span class="total">${hotel.ratings.no}</span>
+                                                            <b>${hotel.ratings.text}</b>
+                                                            <small>(1736)</small>
+                                                        </div>
+
+                                                        <div class="location-reviews">
+                                                            Excellent location <small>(9.2/10)</small>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="third-party-prices">
+                                                        <div class="sites-and-prices">
+                                                            <div class="highlited">
+                                                                Hotel website
+                                                                <strong>$706</strong>
+                                                            </div>
+                                                            <div>
+                                                                Agoda
+                                                                <strong>$575</strong>
+                                                            </div>
+                                                            <div>
+                                                                Travelocity
+                                                                <strong>$708</strong>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="more-deals">
+                                                            <strong>More deals from</strong>
+                                                            <strong>$575</strong>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="call-to-action">
+                                                        <div class="price">
+
+                                                            <div class="before-discount">
+                                                                HotelPower.com
+                                                                <strong><s>$1,568</s></strong>
+                                                            </div>
+
+                                                            <div class="after-discount">
+                                                                Travelocity
+                                                                <strong>$${hotel.price}</strong>
+                                                                <div class="total">
+                                                                    3 nights for <strong>$3,638</strong>
+                                                                </div>
+                                                                <div class="usp">
+                                                                    <span>Free Breakfast</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="button">
+                                                                <a href="#">View Deal</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                </div>`;
+
+                $("#soma").append(template);
+
+            }
+        });
+
+    </script>
+</body>
+</html>
